@@ -1,0 +1,23 @@
+baseURL = 'https://heguang259.github.io/'
+languageCode = 'zh-CN'
+defaultContentLanguage = 'zh-cn'
+title = '心照笔记'
+theme = 'hugo-theme-stack'
+
+[params]
+  favicon = '/favicon.ico'
+
+[params.sidebar]
+  emoji = '📝'
+  subtitle = '记录思考，分享成长'
+
+[params.footer]
+  since = 2026
+
+[[params.social]]
+  name = 'GitHub'
+  url = 'https://github.com/heguang259'
+
+[markup]
+  [markup.highlight]
+    noClasses = false
