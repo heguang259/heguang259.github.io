@@ -5,6 +5,7 @@ title = '心照笔记'
 theme = 'hugo-theme-stack'
 
 [params]
+  mainSections = ["posts"]
   favicon = '/favicon.ico'
 
 [params.sidebar]
