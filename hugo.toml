@@ -1,24 +1,58 @@
 baseURL = 'https://heguang259.github.io/'
 languageCode = 'zh-CN'
-defaultContentLanguage = 'zh-cn'
+defaultContentLanguage = 'zh'
 title = '心照笔记'
-theme = 'hugo-theme-stack'
+theme = 'hugo-PaperMod'
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']
 
 [params]
   mainSections = ["posts"]
-  favicon = '/favicon.ico'
+  defaultTheme = 'auto'
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowAllPagesInArchive = true
+  ShowPageNums = true
+  ShowToc = true
 
-[params.sidebar]
-  emoji = '📝'
-  subtitle = '记录思考，分享成长'
+[[menu.main]]
+  name = '关于'
+  url = 'about'
+  weight = 1
 
-[params.footer]
-  since = 2026
+[[menu.main]]
+  name = '归档'
+  url = 'archives'
+  weight = 2
 
-[[params.social]]
-  name = 'GitHub'
-  url = 'https://github.com/heguang259'
+[[menu.main]]
+  name = '搜索'
+  url = 'search'
+  weight = 3
+
+[[menu.main]]
+  name = '分类'
+  url = 'categories'
+  weight = 4
+
+[[menu.main]]
+  name = '标签'
+  url = 'tags'
+  weight = 5
 
 [markup]
   [markup.highlight]
     noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
