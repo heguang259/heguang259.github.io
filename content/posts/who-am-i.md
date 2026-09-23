@@ -2,7 +2,8 @@
 title: "我究竟是什么？——关于自我的一次终极探问"
 description: "从佛家智慧到现代科学，探索自我的本质"
 date: 2026-04-10T08:00:00+08:00
-image: "/images/who-am-i.jpg"
+cover:
+  image: "/images/who-am-i.jpg"
 categories: ["修行感悟"]
 tags: ["自我", "佛学", "道家", "认知"]
 ---

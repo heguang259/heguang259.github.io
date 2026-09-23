@@ -2,7 +2,8 @@
 title: "焦虑迷茫怎么破？——如何从身心分离到知行合一"
 description: "在中医视角下，探讨失眠焦虑的本质与解决之道"
 date: 2026-04-10T08:30:00+08:00
-image: "/images/calm-mind.jpg"
+cover:
+  image: "/images/calm-mind.jpg"
 categories: ["身心健康"]
 tags: ["焦虑", "失眠", "中医", "修行", "身心合一"]
 ---
