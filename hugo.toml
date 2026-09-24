@@ -26,6 +26,10 @@ theme = 'hugo-PaperMod'
   ShowPageNums = true
   ShowToc = true
 
+[params.homeInfoParams]
+  Title = "公告"
+  Content = "欢迎来到心照笔记。这里记录我对自我认识、身体实践、传统思想与现代知识的长期探索。"
+
 [[menu.main]]
   name = '关于'
   url = 'about'
