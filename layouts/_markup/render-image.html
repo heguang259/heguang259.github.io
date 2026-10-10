@@ -1,0 +1,46 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.String -}}
+{{- $img := "" -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path }}
+  {{- $img = or (.PageInner.Resources.Get $path) (resources.Get $path) -}}
+  {{- with $img -}}
+    {{- $src = .RelPermalink -}}
+    {{- with $u.RawQuery -}}
+      {{- $src = printf "%s?%s" $src . -}}
+    {{- end -}}
+    {{- with $u.Fragment -}}
+      {{- $src = printf "%s#%s" $src . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) -}}
+{{- $processable := slice "jpg" "jpeg" "png" "tif" "bmp" "gif" -}}
+{{- if hugo.IsExtended -}}{{- $processable = $processable | append "webp" -}}{{- end -}}
+
+{{- /* 中文：能用 Hugo 处理图片时，生成多档尺寸，浏览器按屏幕大小自动选择 */ -}}
+{{- if and $img (in $processable $img.MediaType.SubType) $prod -}}
+  {{- $sizes := (slice "360" "480" "720" "1080" "1500") -}}
+  {{- $srcset := slice -}}
+  {{- range $size := $sizes -}}
+    {{- if ge $img.Width (int $size) -}}
+      {{- $srcset = $srcset | append (printf "%s %sw" ($img.Resize (printf "%sx" $size)).RelPermalink $size) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
+  <img loading="lazy" decoding="async"
+    srcset="{{ delimit $srcset ", " }}"
+    src="{{ $img.RelPermalink }}"
+    sizes="(min-width: 768px) 720px, 100vw"
+    width="{{ $img.Width }}" height="{{ $img.Height }}"
+    alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}>
+{{- else -}}
+  {{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy") -}}
+  <img
+    {{- range $k, $v := $attributes -}}
+      {{- if $v -}}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+      {{- end -}}
+    {{- end -}}>
+{{- end -}}

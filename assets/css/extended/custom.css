@@ -1,0 +1,19 @@
+/* ============================================================
+   心照笔记 · 自定义样式覆盖
+   本文件由 PaperMod 自动合并（assets/css/extended/*.css）
+   不要修改 themes/ 下的主题文件，所有覆盖都写在这里。
+   ============================================================ */
+
+/* --- 修复图片拉伸变形 ---
+   主题 reset.css 只有 img{display:block;max-width:100%}，
+   缺少 height:auto。当图片被 max-width 缩小、而 HTML 上仍带原始
+   height 属性时，浏览器会按原高度拉伸图片。
+   height:auto 让高度随宽度等比缩放。（2026-10-10 修复） */
+img {
+  height: auto;
+}
+
+/* 正文内图片：加一点上下呼吸感，与 .md-content img 的 margin 保持一致 */
+.md-content img {
+  height: auto;
+}
