@@ -28,11 +28,10 @@ theme = 'hugo-PaperMod'
   disableScrollToTop = true
 
 [params.assets]
-  # 中文：网站图标。ico/png 二进制图标待上传，先统一指向 SVG 以避免 404
-  favicon = "favicon.svg"
-  favicon16x16 = "favicon.svg"
-  favicon32x32 = "favicon.svg"
-  apple_touch_icon = "favicon.svg"
+  favicon = "favicon.ico"
+  favicon16x16 = "favicon-16x16.png"
+  favicon32x32 = "favicon-32x32.png"
+  apple_touch_icon = "apple-touch-icon.png"
   safari_pinned_tab = "safari-pinned-tab.svg"
 
 [[menu.main]]
