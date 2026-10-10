@@ -1,6 +1,11 @@
+# Hugo 构建产物（自动生成，不需要进仓库）
 /public/
-/resources/_gen/
+/resources/
+
+# Hugo 自动生成的临时文件
 /assets/jsconfig.json
 /hugo_stats.json
 /.hugo_build.lock
+
+# 本地工作目录（AI 协作、预览截图、临时脚本等，不进仓库）
 .workbuddy/
