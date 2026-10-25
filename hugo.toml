@@ -1,6 +1,8 @@
 baseURL = 'https://heguang259.github.io/'
 languageCode = 'zh-CN'
 defaultContentLanguage = 'zh'
+# 让 Hugo 按中文字数统计（否则中文会被当成几个"英文单词"，阅读时间算成 1 分钟）
+hasCJKLanguage = true
 title = '心照笔记'
 theme = 'hugo-PaperMod'
 
