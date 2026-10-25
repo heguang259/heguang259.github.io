@@ -47,3 +47,23 @@ img {
 .first-entry .entry-footer {
   font-size: 13px;
 }
+
+/* --- 首页列表：封面压成横条（2026-10-26）---
+   原样式是 3:2 通栏，卡片里 672×448，一张图占半屏，一屏只能看 1.4 篇。
+   这里改成固定高度，用 object-fit:cover 从中间裁切——注意是"裁"不是"拉伸"，
+   所以图片不会被压扁变形，只是上下各切掉一部分。
+   文章页头图（.post-single）不受影响，仍是 3:2 通栏，保留进入文章时的气势。 */
+.first-entry .entry-cover img,
+.post-entry .entry-cover img {
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 手机上卡片更窄，图矮一些才不至于占满一屏 */
+@media (max-width: 767px) {
+  .first-entry .entry-cover img,
+  .post-entry .entry-cover img {
+    height: 170px;
+  }
+}
