@@ -1,8 +1,11 @@
 name: Deploy Hugo site to Pages
 
+# 2026-10-26 停用自动触发：本站对外门面已改为 Cloudflare Pages（xinzhao-biji.pages.dev）
+# GitHub 从此只作源码仓库与应急备份，push 不再触发构建。
+# 如需恢复自动部署，把下面注释掉的 push 触发器放开即可。
 on:
-  push:
-    branches: ["main"]
+  # push:
+  #   branches: ["main"]
   workflow_dispatch:
 
 permissions:
