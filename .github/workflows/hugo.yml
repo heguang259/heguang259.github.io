@@ -1,11 +1,11 @@
 name: Deploy Hugo site to Pages
 
-# 2026-10-26 停用自动触发：本站对外门面已改为 Cloudflare Pages（xinzhao-biji.pages.dev）
-# GitHub 从此只作源码仓库与应急备份，push 不再触发构建。
-# 如需恢复自动部署，把下面注释掉的 push 触发器放开即可。
+# 2026-10-27 恢复自动触发：旧站保留为「带迁移提示的镜像站」
+# 访问旧地址的人会看到顶部横幅，被引导到新站 xinzhao-biji.pages.dev
+# 新站由 Cloudflare 独立构建，两边同时更新、互不影响
 on:
-  # push:
-  #   branches: ["main"]
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.159.1
+      MIGRATE_BANNER: "true"   # 只在旧站显示迁移横幅；Cloudflare 构建不设此项，所以新站没有
     steps:
       - name: Install Hugo CLI
         run: |

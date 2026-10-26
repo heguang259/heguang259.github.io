@@ -66,3 +66,8 @@ theme = 'hugo-PaperMod'
     noClasses = false
   [markup.goldmark.renderer]
     unsafe = true
+
+# 允许模板读取这个环境变量（旧站迁移横幅用，仅 GitHub Pages 构建时设置）
+[security]
+  [security.funcs]
+    getenv = ['MIGRATE_BANNER']

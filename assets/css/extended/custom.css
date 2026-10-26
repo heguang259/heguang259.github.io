@@ -67,3 +67,83 @@ img {
     height: 170px;
   }
 }
+
+/* 旧站迁移提示条：仅在构建时设置 MIGRATE_BANNER=true 才出现（GitHub Pages 构建专用） */
+.migrate-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  margin: 0 0 26px;
+  padding: 15px 18px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  background: var(--entry);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--content);
+}
+
+.migrate-banner-label {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.migrate-banner a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.migrate-banner-note {
+  color: var(--secondary);
+}
+
+@media (max-width: 640px) {
+  .migrate-banner {
+    font-size: 13.5px;
+    padding: 13px 14px;
+    gap: 4px 8px;
+  }
+}
+
+/* 旧站迁移提示条：仅在构建时设置 MIGRATE_BANNER=true 才出现（GitHub Pages 构建专用） */
+.migrate-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  margin: 0 0 26px;
+  padding: 15px 18px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  background: var(--entry);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--content);
+}
+
+.migrate-banner-label {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.migrate-banner a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.migrate-banner-note {
+  color: var(--secondary);
+}
+
+@media (max-width: 640px) {
+  .migrate-banner {
+    font-size: 13.5px;
+    padding: 13px 14px;
+    gap: 4px 8px;
+  }
+}
