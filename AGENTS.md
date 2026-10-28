@@ -57,8 +57,8 @@ git add -A && git commit -m "..." && git push origin main
 **发布前先跑一次自检**，别靠眼睛看。一条命令查 11 项（日期是否在未来、封面路径、公众号残留、摘要是否混进标题、旧域名残留、死链等），全绿再推：
 
 ```
-python .workbuddy/tools/preflight.py            # 只查本地
-python .workbuddy/tools/preflight.py --online   # 连线上一起查
+python tools/preflight.py            # 只查本地
+python tools/preflight.py --online   # 连线上一起查
 ```
 
 **完整的八步发布流程**（取原文 → 配图 → 排版 → 逐段核对 → 构建预览 → 自检 → 推送 → 线上验收）写在 `MAINTENANCE.md` 第四节，接手发文章时照那一节走。

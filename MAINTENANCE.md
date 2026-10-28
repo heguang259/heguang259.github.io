@@ -289,7 +289,7 @@ git config --global https.proxy ""
 ## 四、文章发布完整流程（★ 每篇照走，不要凭记忆）
 
 > 第三节讲"为什么"，这一节讲"怎么做"。**八步，每步都有验证方式，任何一步过不了都不要往下走。**
-> 大部分检查已经交给程序：`.workbuddy/tools/preflight.py`，不要靠眼睛。
+> 大部分检查已经交给程序：`tools/preflight.py`，不要靠眼睛。
 
 ### 4.1 全流程一览
 
@@ -410,7 +410,7 @@ $P .workbuddy/tools/gen_one_preview.py "public/posts/xxx/index.html" ".workbuddy
 ### 4.7 第 5 步 · 跑自检（关键一步）
 
 ```bash
-C:/Users/a/.workbuddy/binaries/python/versions/3.13.12/python.exe .workbuddy/tools/preflight.py
+C:/Users/a/.workbuddy/binaries/python/versions/3.13.12/python.exe tools/preflight.py
 ```
 
 一次查完 11 项：日期是否在未来、封面路径与文件是否有效、front matter 有无重复字段、正文有无公众号残留、每篇有无摘要控制、每篇是否都生成了页面、首页摘要是摘要还是全文、页面有无旧域名残留、有无带部署编号的地址、图片是否都存在、站内有无死链。
@@ -434,7 +434,7 @@ GIT_TERMINAL_PROMPT=0 git push origin main
 ### 4.9 第 7 步 · 线上验收
 
 ```bash
-python .workbuddy/tools/preflight.py --online
+python tools/preflight.py --online
 ```
 
 它逐篇访问线上地址，核对状态码和标题是否在页面上，再查首页、归档、分类、标签四个导航页。
@@ -547,7 +547,7 @@ tags: ["功法", "健康"]      # 可以写多个标签
 ### 6.1 自动检查（一条命令，11 项）
 
 ```bash
-C:/Users/a/.workbuddy/binaries/python/versions/3.13.12/python.exe .workbuddy/tools/preflight.py
+C:/Users/a/.workbuddy/binaries/python/versions/3.13.12/python.exe tools/preflight.py
 ```
 
 覆盖：发布日期、封面路径与文件、重复字段、公众号残留、摘要控制、页面是否生成、首页摘要长度、旧域名残留、带编号地址、图片存在性、站内死链。
@@ -585,8 +585,8 @@ C:/Users/a/.workbuddy/binaries/python/versions/3.13.12/python.exe .workbuddy/too
 | 文章 | `content/posts/xxx.md` |
 | 图片 | `assets/images/xxx.jpg` |
 | 自动部署脚本 | `.github/workflows/hugo.yml`（一般不用动） |
-| 发布自检脚本 | `.workbuddy/tools/preflight.py`（发布前必跑） |
-| 单页本地预览生成 | `.workbuddy/tools/gen_one_preview.py` |
+| 发布自检脚本 | `tools/preflight.py`（发布前必跑） |
+| 单页本地预览生成 | `.workbuddy/tools/gen_one_preview.py`（本机工具，不进仓库） |
 
 ---
 
@@ -613,7 +613,7 @@ C:/Users/a/.workbuddy/binaries/python/versions/3.13.12/python.exe .workbuddy/too
 - 分类 = `养生` / `AI`，标签 = `功法` / `健康`（见第五节 5.2）
 - 摘要统一用 `<!--more-->`，放在开头导语之后
 - 已清掉全站公众号痕迹（含早先发布的《静坐入门》两处）
-- 发布自检脚本：`.workbuddy/tools/preflight.py`
+- 发布自检脚本：`tools/preflight.py`
 
 ### 历史快照（2026-10-11，仅作背景）
 
