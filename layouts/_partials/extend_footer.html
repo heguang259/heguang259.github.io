@@ -53,3 +53,38 @@
         });
     })();
 </script>
+
+<script>
+    (function () {
+        var buttons = document.querySelectorAll(".wv-cover");
+        if (!buttons.length) { return; }
+
+        Array.prototype.forEach.call(buttons, function (btn) {
+            btn.addEventListener("click", function () {
+                var src = btn.getAttribute("data-src");
+                if (!src) { return; }
+
+                var video = document.createElement("video");
+                video.setAttribute("controls", "controls");
+                video.setAttribute("playsinline", "playsinline");
+                video.setAttribute("preload", "auto");
+                video.setAttribute("src", src);
+
+                var poster = btn.querySelector("img");
+                if (poster) { video.setAttribute("poster", poster.getAttribute("src")); }
+
+                video.addEventListener("error", function () {
+                    var tip = document.createElement("p");
+                    tip.className = "wv-fallback";
+                    tip.textContent = "这段视频暂时无法播放。";
+                    if (video.parentNode) { video.parentNode.replaceChild(tip, video); }
+                });
+
+                btn.parentNode.replaceChild(video, btn);
+
+                var playing = video.play();
+                if (playing && playing.catch) { playing.catch(function () { }); }
+            }, { once: true });
+        });
+    })();
+</script>

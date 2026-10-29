@@ -224,3 +224,90 @@ img {
     height: 52px;
   }
 }
+
+/* ---------- 本站视频（点击封面才加载，视频文件就在站里） ---------- */
+.wv-embed {
+  margin: 26px 0 30px;
+}
+
+.wv-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--entry);
+  cursor: pointer;
+  line-height: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}
+
+.wv-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wv-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .28);
+  transition: background .2s ease;
+}
+
+.wv-play svg {
+  width: 68px;
+  height: 68px;
+  color: #fff;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .45));
+  transition: transform .2s ease;
+}
+
+.wv-cover:hover .wv-play,
+.wv-cover:focus-visible .wv-play {
+  background: rgba(0, 0, 0, .42);
+}
+
+.wv-cover:hover .wv-play svg,
+.wv-cover:focus-visible .wv-play svg {
+  transform: scale(1.08);
+}
+
+.wv-embed video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  border-radius: 10px;
+  background: #000;
+}
+
+.wv-embed figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary);
+  text-align: center;
+}
+
+.wv-fallback {
+  margin: 0;
+  padding: 22px 18px;
+  border-radius: 10px;
+  background: var(--entry);
+  color: var(--secondary);
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .wv-play svg {
+    width: 52px;
+    height: 52px;
+  }
+}

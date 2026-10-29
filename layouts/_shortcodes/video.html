@@ -1,0 +1,28 @@
+{{- /*
+  播放放在本站里的视频（点击封面才加载，避免一进页面就下拉整段视频）
+
+  用法：{{< video src="videos/xxx.mp4" poster="images/xxx.jpg" title="视频标题" note="一句说明" >}}
+
+  视频文件放 static/videos/ 之下，文件名只用英文小写和短横线，不要用中文。
+  poster 走 assets/images，跟其他配图一样参与压缩和响应式处理。
+  单条视频请控制在 25 兆以内——超过这个大小，站点托管会拒绝部署。
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $poster := .Get "poster" -}}
+{{- $title := .Get "title" | default "视频" -}}
+{{- $note := .Get "note" -}}
+{{- $posterSrc := "" -}}
+{{- with $poster -}}
+  {{- with resources.Get . -}}
+    {{- $posterSrc = (.Resize "1080x").RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+<figure class="wv-embed">
+  <button class="wv-cover" type="button" data-src="{{ $src | relURL }}" aria-label="播放视频：{{ $title }}">
+    {{ with $posterSrc }}<img src="{{ . }}" alt="{{ $title }} 视频封面" loading="lazy" width="1080" height="607">{{ end }}
+    <span class="wv-play" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg>
+    </span>
+  </button>
+  <figcaption>{{ $title }}{{ with $note }} · {{ . }}{{ end }}</figcaption>
+</figure>
