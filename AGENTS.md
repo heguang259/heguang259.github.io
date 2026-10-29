@@ -43,6 +43,7 @@
 ## 文章约定
 
 - **配图只留一张**，放开头当封面，正文不插图
+- **正文提到老文章时，首次出现处挂站内链接**：只链明确所指的（站桩→站桩入门、六字诀→六字诀），泛泛的词不硬凑，同篇重复只链首次
 - **正文插视频用站内模块**，两种情况分开处理：
   - **引用别人平台上的视频**：`{{< bilibili bvid="BV号" p="1" title="标题" cover="images/xxx.jpg" >}}`，模板在 `layouts/_shortcodes/bilibili.html`，点了才加载播放器。视频源优先找官方账号，没有就挑播放量高、画面干净（无二次字幕水印）的那版，选前必须自己看画面。本地预览点视频是黑的属正常（B 站不接受本地文件来源），线上才准
   - **自己的视频（不经过任何平台审核）**：`{{< video src="videos/xxx.mp4" poster="images/xxx.jpg" title="标题" note="一句说明" >}}`，模板在 `layouts/_shortcodes/video.html`，同样点了才加载。视频文件放 `static/videos/`，文件名只用英文小写和短横线，**单条必须压到 25 兆以内**（站点托管的硬上限，超了直接部署失败）。压缩用本机 ffmpeg：`ffmpeg -i 原文件 -vf scale=-2:720 -c:v libx264 -crf 28 -preset slow -movflags +faststart -an 输出.mp4`（-an 是去掉声音，需要声音就去掉这个参数）
