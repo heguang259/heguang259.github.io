@@ -29,3 +29,27 @@
         update();
     })();
 </script>
+
+<script>
+    (function () {
+        var buttons = document.querySelectorAll(".bili-cover");
+        if (!buttons.length) { return; }
+
+        Array.prototype.forEach.call(buttons, function (btn) {
+            btn.addEventListener("click", function () {
+                var bvid = btn.getAttribute("data-bvid");
+                if (!bvid) { return; }
+                var page = btn.getAttribute("data-p") || "1";
+                var iframe = document.createElement("iframe");
+                iframe.src = "https://player.bilibili.com/player.html?bvid=" +
+                    encodeURIComponent(bvid) + "&page=" + encodeURIComponent(page) +
+                    "&high_quality=1&danmaku=0&autoplay=1";
+                iframe.setAttribute("scrolling", "no");
+                iframe.setAttribute("frameborder", "0");
+                iframe.setAttribute("allowfullscreen", "true");
+                iframe.setAttribute("title", btn.getAttribute("aria-label") || "视频播放器");
+                btn.parentNode.replaceChild(iframe, btn);
+            }, { once: true });
+        });
+    })();
+</script>

@@ -1,0 +1,30 @@
+{{- /*
+  嵌入 B 站视频（点击封面才加载播放器）
+
+  用法：{{< bilibili bvid="BV1ceL36CEdU" p="1" title="万行法师《东华禅动功》完整教学" cover="images/xxx.jpg" >}}
+
+  为什么做成点击后才加载：
+  1. 播放器要拉一两兆的脚本，直接嵌会拖慢首屏；
+  2. 手机上 B 站播放器会弹"打开APP"，先给张封面和播放键，人心里有数。
+  封面图走 assets/images，跟其他配图一样参与压缩和响应式处理。
+*/ -}}
+{{- $bvid := .Get "bvid" -}}
+{{- $p := .Get "p" | default "1" -}}
+{{- $title := .Get "title" | default "教学视频" -}}
+{{- $cover := .Get "cover" -}}
+{{- $src := "" -}}
+{{- with $cover -}}
+  {{- with resources.Get . -}}
+    {{- $src = (.Resize "1080x").RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+<figure class="bili-embed">
+  <button class="bili-cover" type="button" data-bvid="{{ $bvid }}" data-p="{{ $p }}"
+    aria-label="播放视频：{{ $title }}">
+    {{ with $src }}<img src="{{ . }}" alt="{{ $title }} 视频封面" loading="lazy" width="1080" height="607">{{ end }}
+    <span class="bili-play" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg>
+    </span>
+  </button>
+  <figcaption>{{ $title }} · <a href="https://www.bilibili.com/video/{{ $bvid }}/" target="_blank" rel="noopener noreferrer">在哔哩哔哩打开</a></figcaption>
+</figure>
