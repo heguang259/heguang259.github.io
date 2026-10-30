@@ -1,0 +1,35 @@
+{{- /*
+  正文配图（可控制宽度、可带图注）
+  用法：
+    {{< fig src="images/xxx.jpg" alt="说明" width="68%" cap="左为调前，右为调后。" >}}
+  说明：
+    - width 不写默认铺满正文栏宽（100%）；竖长图建议写 60%~75%，否则会把文章节奏拉断
+    - cap 不写就不显示图注
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- $w := .Get "width" | default "100%" -}}
+{{- $cap := .Get "cap" -}}
+{{- with resources.Get $src -}}
+  {{- $im := . -}}
+<figure class="fig-wrap" style="max-width:{{ $w }};">
+  {{- if and hugo.IsProduction (in (slice "jpg" "jpeg" "png" "webp") $im.MediaType.SubType) -}}
+    {{- $srcset := slice -}}
+    {{- range $s := (slice "360" "480" "720" "1080") -}}
+      {{- if ge $im.Width (int $s) -}}
+        {{- $srcset = $srcset | append (printf "%s %sw" ($im.Resize (printf "%sx" $s)).RelPermalink $s) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $im.RelPermalink $im.Width) -}}
+  <img loading="lazy" decoding="async" srcset="{{ delimit $srcset ", " }}" src="{{ $im.RelPermalink }}"
+    sizes="(min-width: 768px) 720px, 100vw" width="{{ $im.Width }}" height="{{ $im.Height }}" alt="{{ $alt }}">
+  {{- else -}}
+  <img loading="lazy" decoding="async" src="{{ $im.RelPermalink }}" width="{{ $im.Width }}" height="{{ $im.Height }}" alt="{{ $alt }}">
+  {{- end -}}
+  {{- with $cap -}}
+  <figcaption>{{ . }}</figcaption>
+  {{- end -}}
+</figure>
+{{- else -}}
+  <p><em>图片缺失：{{ $src }}</em></p>
+{{- end -}}

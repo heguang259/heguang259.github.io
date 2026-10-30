@@ -311,3 +311,35 @@ img {
     height: 52px;
   }
 }
+
+/* 图片下方的小字图注（说明左右、来源等） */
+.fig-cap {
+  text-align: center;
+  color: var(--secondary);
+  font-size: 0.86em;
+  line-height: 1.6;
+  margin: -1.1em 0 1.8em;
+}
+
+/* 正文里紧跟图注的图片，底部不留大空档 */
+.fig-cap small {
+  font-size: inherit;
+}
+
+/* 正文配图（可控制宽度）+ 图注 */
+.fig-wrap {
+  margin: 1.8em auto 2.2em;
+}
+.fig-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.fig-wrap figcaption {
+  text-align: center;
+  color: var(--secondary);
+  font-size: 0.86em;
+  line-height: 1.6;
+  margin-top: 0.7em;
+}
