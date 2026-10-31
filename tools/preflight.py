@@ -97,6 +97,7 @@ def load_posts():
             "words": len(strip_md(body)),
             "more": "<!--more-->" in body,
             "summary": len(re.findall(r"^summary:", fm, re.M)),
+            "draft": bool(re.search(r"^draft:\s*true", fm, re.M)),
         })
     return out
 
@@ -150,10 +151,14 @@ def check_build(posts):
         rec(False, "public 目录存在", "没找到构建产物，先跑 hugo")
         return
 
-    missing = [p["slug"] for p in posts
+    # draft: true 的稿件本来就不该生成页面，不算失败（2026-10-31 加）
+    live = [p for p in posts if not p["draft"]]
+    held = [p["slug"] for p in posts if p["draft"]]
+    missing = [p["slug"] for p in live
                if not os.path.exists(os.path.join(PUB, "posts", p["slug"], "index.html"))]
+    note = "；已按住（draft）：" + "、".join(held) if held else ""
     rec(not missing, "每篇文章都生成了页面",
-        ("未生成：" + "、".join(missing) + "（多半是日期在未来）") if missing else "共 %d 篇" % len(posts))
+        ("未生成：" + "、".join(missing) + "（多半是日期在未来）") if missing else "共 %d 篇%s" % (len(live), note))
 
     home = os.path.join(PUB, "index.html")
     if os.path.exists(home):
